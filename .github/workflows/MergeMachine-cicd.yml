@@ -56,5 +56,5 @@ jobs:
         # Zip-deploy the published app to the created web app
         az webapp deployment source config-zip \
           --resource-group MergeMachine \
-          --name $WEBAPP_NAME \
+          --name mergemachinep \
           --src publish.zip
