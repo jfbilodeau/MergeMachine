@@ -36,8 +36,7 @@ jobs:
 
     - name: Deploy Bicep to MergeMachine RG
       env:
-        AZURE_HTTP_USER_AGENT: 'merge-machine-cicd'
-        WEBAPP_NAME: ${{ github.run_id }}-mergemachinep
+        WEBAPP_NAME: mergemachinep
       run: |
         # Publish application to a folder
         dotnet publish --configuration Release --output publish
@@ -53,7 +52,6 @@ jobs:
         az deployment group create \
           --resource-group MergeMachine \
           --template-file infra/MergeMachine.bicep \
-          --parameters webAppName=$WEBAPP_NAME appServicePlanName=mergemachine-asp -o json
 
         # Zip-deploy the published app to the created web app
         az webapp deployment source config-zip \
