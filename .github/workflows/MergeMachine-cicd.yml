@@ -27,3 +27,11 @@ jobs:
 
     - name: Test
       run: dotnet test --no-build --verbosity normal --configuration Release
+
+    - name: Deploy Bicep to MergeMachine RG
+      env:
+        AZURE_HTTP_USER_AGENT: 'merge-machine-cicd'
+      run: |
+        az deployment group create \
+          --resource-group MergeMachine \
+          --template-file infra/MergeMachine.bicep
